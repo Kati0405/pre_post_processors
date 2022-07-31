@@ -1,0 +1,330 @@
+* {
+    box-sizing: border-box;
+}
+
+@mixin centered {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin tour-img($url) {
+    background-image: url($url);
+}
+
+@each $i, $img in $images {
+    .tour-article:nth-child(#{$i}) .tour-img {
+        @include tour-img(#{$img})
+    }
+}
+
+
+h1, h2, h3 {
+    font-family: $font-stack;
+    font-weight: 200;
+}
+
+h3 {
+    color: $primary-color;
+}
+
+h6 {
+    color: $footer-h6;
+    margin: 10px 5px;
+}
+
+.container {
+    margin: 0 auto;
+    width: 960px;
+
+    header {
+        position: relative;
+        max-width: 100%;
+        height: 470px;
+        background: no-repeat $header-bg-img;
+        background-size: cover;
+        border: 1px solid transparent;
+        border-radius: 0 50% 50% 0;
+
+            .main-nav {
+                margin-left: -15px;
+                margin-top: 28px;
+
+                ul {
+                    display: flex;
+                    flex-direction: row;
+                    list-style-type: none;
+                    align-items: center;
+
+                    li {
+                        padding-right: 16px;
+                    }
+                }
+                    a {
+                        color: $primary-color;
+                        text-decoration: none;
+
+                        &:hover {
+                            color:#808080;
+                        }
+                }
+            } 
+
+
+            .header-text {
+                position: absolute;
+                margin-top: 65px;
+                @include centered;
+
+                h1  {
+                    font-size: 32px;
+                    text-align: center;
+                    color: $secondary-color;
+                }
+            }
+    }
+}
+
+.header-btn {
+    display: block;
+    margin: 0 auto;
+    width: 82px;
+    height: 31px;
+    background-color: transparent;
+    border: 1px solid #808080;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #808080;
+    font-size: 0.6em;
+    cursor: pointer;
+    
+    &:hover {
+        color: $primary-color;
+        border-color: $primary-color;
+    }
+}
+
+main {
+    #tours-section {
+        margin: 0 auto;
+        width: 66.6666%;
+
+        h1 {
+            font-size: 32px;
+            color: black;
+            text-align: center;
+        }
+        .tour-article {
+            display: flex;
+            flex-direction: row;
+            box-shadow: 0px 0px 8px 0px rgba(61, 55, 61, 0.7);
+            margin: 27px;
+
+            .tour-img {
+                width: 25%;
+                background-size: cover;
+            }
+            .tour-description {
+                padding: 10px;
+                width: 75%;
+                flex-direction: column;
+
+                h2 {
+                    text-align: center;
+                    margin: 0px;
+                }
+                p {
+                    font-size: 0.8em;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+#reviews-section {
+    display: flex;
+    flex-direction:column;
+    width: 82%;
+    height: 135px;
+    background-color: $review-bg;
+    margin: 0 auto;
+    padding: 5px;
+
+    h3 {
+        color: $review-box;
+        font-size: 21px;
+        text-align: center;
+        margin: 7px;
+    }
+
+    .review-items {
+        display: flex;
+        flex-direction: row;
+
+        .review-item {
+            display: flex;
+            flex-direction: row;
+            width: 33.3333%;
+            height: 80px;
+            background-color: $review-box;
+            margin: 0 5px;
+
+            .review-avatar img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: 5px;
+            }
+            .review-post {
+                margin: 0 15px;
+
+                %small-text {
+                    font-size: 11px;
+                    color:$secondary-color;
+                }
+                p {
+                    @extend %small-text;
+                    margin: 3px;
+                    
+                }
+                em {
+                    @extend %small-text;
+
+                    &::before {
+                        content: "~ ";
+                    }
+                }
+            }
+        }
+    }
+}
+
+#find-town-section {
+    width: 52%;
+    height: 105px;
+    margin: 0 auto;
+    background-color: $town-bg;
+
+    h3 {
+        padding-top: 25px;
+        text-align: center;
+    }
+    form {
+        fieldset {
+            border: none;
+
+            %no-border-grey {
+                background-color: $town-bg;
+                border: none;
+
+                &:focus {
+                    outline: none;
+                    
+                    &::placeholder {
+                        color: transparent;
+                    }
+                }
+            }
+
+            input {
+                @extend %no-border-grey;
+                width: 110px;
+                border-bottom: solid 1px grey;
+                font-size: 11px;
+            }
+            select {
+                @extend %no-border-grey;
+                color: grey;
+                font-size: 11px;
+                padding-left: 20px;
+
+            }
+        }
+    }
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 170px;
+    background-color: $footer-bg;
+    padding: 0 15px;
+    margin-top: 26px;
+
+    .col-3 {
+        width: 33.3333%;
+            .col-list {
+                display: flex;
+                    section {
+                        width: 50%;
+                        ul {
+                            margin: 0;
+                            padding: 0;
+                            list-style-type: none;
+
+                            li {
+                                margin-left: 15px;
+                                line-height: 9px;
+
+                                a {
+                                    color: $footer-li;
+                                    text-decoration: none;
+                                    font-size: 9px;
+
+                                    &:hover {
+                                        color: $footer-btn;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+#follow-us-section {
+    p {
+        font-size: 10px;
+        color: $footer-btn;
+    }
+
+    a { 
+        padding: 5px;
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+#feedback-section {
+    h5 {
+        margin: 15px 0 10px;
+    }
+    input {
+        width: 300px;
+        height: 20px;
+        font-size: 8px;
+    }
+    button {
+        width: 300px;
+        height: 20px;
+        margin: 7px 0;
+        background-color: $footer-btn;
+        color: $secondary-color;
+        font-size: 9px;
+        border: none;
+    }
+}
+
+#payment-section {
+    .payment-method {
+        margin-right: 10px;
+
+        img {
+            width: 30px;
+        }
+    }
+}
